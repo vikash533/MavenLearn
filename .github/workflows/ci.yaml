@@ -13,8 +13,10 @@ jobs:
         uses: actions/setup-java@v1
         with: 
           java-version: 17
+
 	  - name: setup chromedriver
 	    uses: browser-actions/setup-chrome@latest
+
 	  - name: check chrome version
 	    run: chrome --version
       
