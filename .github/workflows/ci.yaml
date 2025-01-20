@@ -20,16 +20,9 @@ jobs:
       - name: check chrome version
         run: chrome --version
 
-      - name: setup selenium dependencies
-        run: |
-          echo '<dependencies>
-                  <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <version>4.27.0</version>
-                  </dependency>
-                </dependencies>' > pom.xml
-      
+      - name: verify maven dependencies
+        run: mvn dependency:tree
+
       - name: build project with maven and testng
         run: mvn -B clean test
 
