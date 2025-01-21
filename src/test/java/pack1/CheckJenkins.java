@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,7 +15,12 @@ public class CheckJenkins {
 	WebDriver driver;
 	@BeforeClass
 	public void openBroweser() {
-		driver= new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless");  // Run Chrome in headless mode
+		options.addArguments("--no-sandbox");  // Bypass OS security model
+		options.addArguments("--disable-dev-shm-usage");  // Overcome limited resource issues
+		options.addArguments("--remote-allow-origins=*"); // Fix potential remote issues
+		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().window().maximize();
 		
